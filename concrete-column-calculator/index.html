@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Concrete Column Volume Calculator</title>
+    <meta name="description" content="Calculate the concrete volume needed for cylindrical concrete columns or pillars." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/base.css" />
+
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Column Volume Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the concrete volume required for a cylindrical concrete column or pillar.",
+  "url": "https://example.com/concrete-column-calculator/",
+  "featureList": [
+    "Input: Column Diameter (inches)",
+    "Input: Column Height (feet)",
+    "Output: Concrete Volume (cubic feet)",
+    "Output: Concrete Volume (cubic yards)"
+  ]
+}
+</script>
+
+  </head>
+
+  <body>
+    <main>
+      <header class="tool-header">
+        <h1>Concrete Column Volume Calculator</h1>
+        <p class="tool-purpose">Calculate the concrete volume needed for cylindrical concrete columns or pillars.</p>
+      </header>
+
+      
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Column Diameter (inches)
+          </span>
+          <input
+            type="number"
+            id="column_diameter"
+            value="12"
+            step="any"
+          />
+          <small>The diameter of the concrete column.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Column Height (feet)
+          </span>
+          <input
+            type="number"
+            id="column_height"
+            value="8"
+            step="any"
+          />
+          <small>The vertical height of the column.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_feet">—</span>
+          <span>cubic feet</span>
+          <small>Concrete volume required for the column.</small>
+        </div>
+      
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_yards">—</span>
+          <span>cubic yards</span>
+          <small>Concrete volume required for the column in cubic yards.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>This calculator uses the volume formula for a cylinder based on column diameter and height.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this calculator for concrete columns, pillars, or vertical supports.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const column_diameter = document.getElementById("column_diameter").value;
+            
+            const column_height = document.getElementById("column_height").value;
+            
+        
+            
+            const radius_ft = (column_diameter / 12) / 2;
+            
+            const height_ft = column_height;
+            
+        
+            let result = Math.PI * radius_ft * radius_ft * height_ft;
+        
+            
+            const factor = Math.pow(10, 2);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("volume_cubic_feet").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+            document.getElementById("volume_cubic_yards").textContent =
+              Number.isFinite(result) ? (result / 27).toFixed(2) : "—";
+            
+          }
+
+          
+          document.getElementById("column_diameter").addEventListener("input", calculate);
+          
+          document.getElementById("column_height").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+    </main>
+  </body>
+</html>

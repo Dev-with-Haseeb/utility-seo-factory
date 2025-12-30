@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Concrete Pier Calculator</title>
+    <meta name="description" content="Calculate total concrete volume needed for multiple cylindrical concrete piers or sonotubes." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/base.css" />
+
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Pier Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the total concrete volume required for multiple cylindrical concrete piers or sonotubes.",
+  "url": "https://example.com/concrete-pier-calculator/",
+  "featureList": [
+    "Input: Pier Diameter (inches)",
+    "Input: Pier Depth (feet)",
+    "Input: Number of Piers",
+    "Output: Total Concrete Volume (cubic feet)",
+    "Output: Total Concrete Volume (cubic yards)"
+  ]
+}
+</script>
+
+  </head>
+
+  <body>
+    <main>
+      <header class="tool-header">
+        <h1>Concrete Pier Calculator</h1>
+        <p class="tool-purpose">Calculate total concrete volume needed for multiple cylindrical concrete piers or sonotubes.</p>
+      </header>
+
+      
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Pier Diameter (inches)
+          </span>
+          <input
+            type="number"
+            id="pier_diameter"
+            value="12"
+            step="any"
+          />
+          <small>The diameter of each concrete pier.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Pier Depth (feet)
+          </span>
+          <input
+            type="number"
+            id="pier_depth"
+            value="4"
+            step="any"
+          />
+          <small>The depth of each concrete pier.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Number of Piers
+          </span>
+          <input
+            type="number"
+            id="pier_count"
+            value="6"
+            step="any"
+          />
+          <small>The total number of concrete piers.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Total Concrete Volume:</strong>
+          <span id="volume_cubic_feet">—</span>
+          <span>cubic feet</span>
+          <small>Total concrete volume required for all piers.</small>
+        </div>
+      
+        <div class="output">
+          <strong>Total Concrete Volume:</strong>
+          <span id="volume_cubic_yards">—</span>
+          <span>cubic yards</span>
+          <small>Total concrete volume required for all piers in cubic yards.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>This calculator multiplies the volume of a single cylindrical pier by the total number of piers.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this calculator when estimating concrete for deck piers, fence posts, or foundation supports.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const pier_diameter = document.getElementById("pier_diameter").value;
+            
+            const pier_depth = document.getElementById("pier_depth").value;
+            
+            const pier_count = document.getElementById("pier_count").value;
+            
+        
+            
+            const radius_ft = (pier_diameter / 12) / 2;
+            
+            const depth_ft = pier_depth;
+            
+            const count = pier_count;
+            
+        
+            let result = Math.PI * radius_ft * radius_ft * depth_ft * count;
+        
+            
+            const factor = Math.pow(10, 2);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("volume_cubic_feet").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+            document.getElementById("volume_cubic_yards").textContent =
+              Number.isFinite(result) ? (result / 27).toFixed(2) : "—";
+            
+          }
+
+          
+          document.getElementById("pier_diameter").addEventListener("input", calculate);
+          
+          document.getElementById("pier_depth").addEventListener("input", calculate);
+          
+          document.getElementById("pier_count").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+    </main>
+  </body>
+</html>

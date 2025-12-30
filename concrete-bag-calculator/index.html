@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Concrete Bag Calculator</title>
+    <meta name="description" content="Calculate how many 60 lb or 80 lb concrete bags you need based on concrete volume." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/base.css" />
+
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Bag Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the number of premixed concrete bags required based on concrete volume.",
+  "url": "https://example.com/concrete-bag-calculator/",
+  "featureList": [
+    "Input: Concrete Volume (cubic yards)",
+    "Input: Bag Size",
+    "Output: Number of Concrete Bags (bags)"
+  ]
+}
+</script>
+
+  </head>
+
+  <body>
+    <main>
+      <header class="tool-header">
+        <h1>Concrete Bag Calculator</h1>
+        <p class="tool-purpose">Calculate how many 60 lb or 80 lb concrete bags you need based on concrete volume.</p>
+      </header>
+
+      
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Concrete Volume (cubic yards)
+          </span>
+          <input
+            type="number"
+            id="concrete_volume"
+            value="1"
+            step="any"
+          />
+          <small>Total concrete volume needed, typically from a slab or footing calculation.</small>
+        </label>
+
+      
+          <label>
+            Bag Size
+            <select id="bag_size">
+              <option value="60" >60 lb bag</option><option value="80" selected>80 lb bag</option>
+            </select>
+            <small>Weight of each premixed concrete bag.</small>
+          </label>
+        
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Number of Concrete Bags:</strong>
+          <span id="bag_count">—</span>
+          <span>bags</span>
+          <small>Total number of premixed concrete bags required.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>This calculator divides total concrete volume by the yield of each bag size to estimate the number of concrete bags needed.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this calculator when purchasing premixed concrete bags for small projects instead of ordering ready-mix concrete.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const concrete_volume = document.getElementById("concrete_volume").value;
+            
+            const bag_size = document.getElementById("bag_size").value;
+            
+        
+            
+            const volume_cubic_yards = concrete_volume;
+            
+            const yield_per_bag = bag_size == '60' ? 0.011 : 0.015;
+            
+        
+            let result = volume_cubic_yards / yield_per_bag;
+        
+            
+            const factor = Math.pow(10, 0);
+            result = Math.ceil(result * factor) / factor;
+            
+
+            
+            document.getElementById("bag_count").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+          }
+
+          
+          document.getElementById("concrete_volume").addEventListener("input", calculate);
+          
+          document.getElementById("bag_size").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+    </main>
+  </body>
+</html>
