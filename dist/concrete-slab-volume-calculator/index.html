@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Concrete Slab Volume Calculator</title>
+    <meta name="description" content="Calculate the concrete volume needed for a rectangular slab based on length, width, and thickness." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/base.css" />
+
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Slab Volume Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the concrete volume required for a rectangular concrete slab.",
+  "url": "https://example.com/concrete-slab-volume-calculator/",
+  "featureList": [
+    "Input: Slab Length (feet)",
+    "Input: Slab Width (feet)",
+    "Input: Slab Thickness (inches)",
+    "Output: Concrete Volume (cubic feet)",
+    "Output: Concrete Volume (cubic yards)"
+  ]
+}
+</script>
+
+  </head>
+
+  <body>
+    <main>
+      <header class="tool-header">
+        <h1>Concrete Slab Volume Calculator</h1>
+        <p class="tool-purpose">Calculate the concrete volume needed for a rectangular slab based on length, width, and thickness.</p>
+      </header>
+
+      
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Slab Length (feet)
+          </span>
+          <input
+            type="number"
+            id="slab_length"
+            value="10"
+            step="any"
+          />
+          <small>The total length of the slab measured from end to end.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Slab Width (feet)
+          </span>
+          <input
+            type="number"
+            id="slab_width"
+            value="10"
+            step="any"
+          />
+          <small>The total width of the slab measured side to side.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Slab Thickness (inches)
+          </span>
+          <input
+            type="number"
+            id="slab_thickness"
+            value="4"
+            step="any"
+          />
+          <small>The thickness of the slab. A common residential thickness is 4 inches.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_feet">—</span>
+          <span>cubic feet</span>
+          <small>Total volume of concrete required for the slab in cubic feet.</small>
+        </div>
+      
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_yards">—</span>
+          <span>cubic yards</span>
+          <small>Total volume of concrete required for the slab in cubic yards.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>This calculator multiplies the slab length, width, and thickness to determine the total concrete volume required.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this calculator when planning concrete slabs for patios, driveways, floors, or similar flat surfaces.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const slab_length = document.getElementById("slab_length").value;
+            
+            const slab_width = document.getElementById("slab_width").value;
+            
+            const slab_thickness = document.getElementById("slab_thickness").value;
+            
+        
+            
+            const length_ft = slab_length;
+            
+            const width_ft = slab_width;
+            
+            const thickness_ft = slab_thickness / 12;
+            
+        
+            let result = length_ft * width_ft * thickness_ft;
+        
+            
+            const factor = Math.pow(10, 2);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("volume_cubic_feet").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+            document.getElementById("volume_cubic_yards").textContent =
+              Number.isFinite(result) ? (result / 27).toFixed(2) : "—";
+            
+          }
+
+          
+          document.getElementById("slab_length").addEventListener("input", calculate);
+          
+          document.getElementById("slab_width").addEventListener("input", calculate);
+          
+          document.getElementById("slab_thickness").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+    </main>
+  </body>
+</html>

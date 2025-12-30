@@ -1,0 +1,92 @@
+{
+  "tool_id": "concrete-pier-calculator",
+  "tool_category": "concrete",
+  "intent_type": "calculate",
+
+  "tool_name": "Concrete Pier Calculator",
+  "tool_purpose": "Calculates the total concrete volume required for multiple cylindrical concrete piers or sonotubes.",
+
+  "inputs": [
+    {
+      "input_id": "pier_diameter",
+      "label": "Pier Diameter",
+      "type": "number",
+      "unit": "inches",
+      "constraints": { "min": 1, "required": true },
+      "default_value": 12,
+      "explanation": "The diameter of each concrete pier."
+    },
+    {
+      "input_id": "pier_depth",
+      "label": "Pier Depth",
+      "type": "number",
+      "unit": "feet",
+      "constraints": { "min": 0.1, "required": true },
+      "default_value": 4,
+      "explanation": "The depth of each concrete pier."
+    },
+    {
+      "input_id": "pier_count",
+      "label": "Number of Piers",
+      "type": "number",
+      "unit": null,
+      "constraints": { "min": 1, "required": true },
+      "default_value": 6,
+      "explanation": "The total number of concrete piers."
+    }
+  ],
+
+  "calculation_logic": {
+    "variables": {
+      "radius_ft": "(pier_diameter / 12) / 2",
+      "depth_ft": "pier_depth",
+      "count": "pier_count"
+    },
+    "formula": "Math.PI * radius_ft * radius_ft * depth_ft * count",
+    "rounding": { "decimals": 2, "method": "round" }
+  },
+
+  "outputs": [
+    {
+      "output_id": "volume_cubic_feet",
+      "label": "Total Concrete Volume",
+      "unit": "cubic feet",
+      "description": "Total concrete volume required for all piers."
+    },
+    {
+      "output_id": "volume_cubic_yards",
+      "label": "Total Concrete Volume",
+      "unit": "cubic yards",
+      "description": "Total concrete volume required for all piers in cubic yards."
+    }
+  ],
+
+  "assumptions": [
+    "All piers are identical in size.",
+    "Piers are perfectly cylindrical.",
+    "No waste or overage is included."
+  ],
+
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "This calculator multiplies the volume of a single cylindrical pier by the total number of piers."
+    },
+    {
+      "title": "When to use this calculator",
+      "text": "Use this calculator when estimating concrete for deck piers, fence posts, or foundation supports."
+    }
+  ],
+
+  "seo": {
+    "title_template": "Concrete Pier Calculator",
+    "meta_description": "Calculate total concrete volume needed for multiple cylindrical concrete piers or sonotubes."
+  },
+
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator"
+  },
+
+  "indexing": { "indexable": true },
+  "monetization": { "ads_enabled": false }
+}

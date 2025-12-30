@@ -1,0 +1,92 @@
+{
+  "tool_id": "concrete-wall-volume-calculator",
+  "tool_category": "concrete",
+  "intent_type": "calculate",
+
+  "tool_name": "Concrete Wall Volume Calculator",
+  "tool_purpose": "Calculates the concrete volume required for a rectangular concrete wall.",
+
+  "inputs": [
+    {
+      "input_id": "wall_length",
+      "label": "Wall Length",
+      "type": "number",
+      "unit": "feet",
+      "constraints": { "min": 0.1, "required": true },
+      "default_value": 20,
+      "explanation": "The total length of the wall."
+    },
+    {
+      "input_id": "wall_height",
+      "label": "Wall Height",
+      "type": "number",
+      "unit": "feet",
+      "constraints": { "min": 0.1, "required": true },
+      "default_value": 8,
+      "explanation": "The vertical height of the wall."
+    },
+    {
+      "input_id": "wall_thickness",
+      "label": "Wall Thickness",
+      "type": "number",
+      "unit": "inches",
+      "constraints": { "min": 1, "required": true },
+      "default_value": 8,
+      "explanation": "The thickness of the concrete wall."
+    }
+  ],
+
+  "calculation_logic": {
+    "variables": {
+      "length_ft": "wall_length",
+      "height_ft": "wall_height",
+      "thickness_ft": "wall_thickness / 12"
+    },
+    "formula": "length_ft * height_ft * thickness_ft",
+    "rounding": { "decimals": 2, "method": "round" }
+  },
+
+  "outputs": [
+    {
+      "output_id": "volume_cubic_feet",
+      "label": "Concrete Volume",
+      "unit": "cubic feet",
+      "description": "Total concrete volume required for the wall."
+    },
+    {
+      "output_id": "volume_cubic_yards",
+      "label": "Concrete Volume",
+      "unit": "cubic yards",
+      "description": "Total concrete volume required for the wall in cubic yards."
+    }
+  ],
+
+  "assumptions": [
+    "The wall has uniform thickness.",
+    "The wall is perfectly rectangular.",
+    "No waste or overage is included."
+  ],
+
+  "tool_notes": [
+    {
+      "title": "How this calculator works",
+      "text": "This calculator multiplies wall length, height, and thickness to determine total concrete volume."
+    },
+    {
+      "title": "When to use this calculator",
+      "text": "Use this calculator when estimating concrete for foundation walls, retaining walls, or similar structures."
+    }
+  ],
+
+  "seo": {
+    "title_template": "Concrete Wall Volume Calculator",
+    "meta_description": "Calculate the concrete volume needed for a rectangular concrete wall based on length, height, and thickness."
+  },
+
+  "structured_data": {
+    "applicationCategory": "ConstructionCalculator"
+  },
+
+  "indexing": { "indexable": true },
+  "monetization": { "ads_enabled": false }
+}

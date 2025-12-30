@@ -1,0 +1,100 @@
+{
+    "tool_id": "concrete-bag-calculator",
+    "tool_category": "concrete",
+    "intent_type": "calculate",
+    "tool_name": "Concrete Bag Calculator",
+    "tool_purpose": "Calculates the number of premixed concrete bags required based on concrete volume.",
+    "inputs": [
+        {
+            "input_id": "concrete_volume",
+            "label": "Concrete Volume",
+            "type": "number",
+            "unit": "cubic yards",
+            "constraints": {
+                "min": 0.01,
+                "required": true
+            },
+            "default_value": 1,
+            "explanation": "Total concrete volume needed, typically from a slab or footing calculation."
+        },
+        {
+            "input_id": "bag_size",
+            "label": "Bag Size",
+            "type": "select",
+            "unit": null,
+            "constraints": {
+                "required": true
+            },
+            "default_value": "80",
+            "explanation": "Weight of each premixed concrete bag.",
+            "options": [
+                {
+                    "label": "60 lb bag",
+                    "value": "60"
+                },
+                {
+                    "label": "80 lb bag",
+                    "value": "80"
+                }
+            ]
+        }
+    ],
+    "calculation_logic": {
+        "variables": {
+            "volume_cubic_yards": "concrete_volume",
+            "yield_per_bag": "bag_size == '60' ? 0.011 : 0.015"
+        },
+        "formula": "volume_cubic_yards / yield_per_bag",
+        "rounding": {
+            "decimals": 0,
+            "method": "ceil"
+        }
+    },
+    "outputs": [
+        {
+            "output_id": "bag_count",
+            "label": "Number of Concrete Bags",
+            "unit": "bags",
+            "description": "Total number of premixed concrete bags required."
+        }
+    ],
+    "assumptions": [
+        "60 lb bag yields ~0.011 cubic yards.",
+        "80 lb bag yields ~0.015 cubic yards.",
+        "Result is rounded up."
+    ],
+    "seo": {
+        "title_template": "Concrete Bag Calculator",
+        "meta_description": "Calculate how many 60 lb or 80 lb concrete bags you need based on concrete volume."
+    },
+    "structured_data": {
+        "applicationCategory": "ConstructionCalculator",
+        "inputType": [
+            "concreteVolume",
+            "bagSize"
+        ],
+        "outputType": [
+            "bagCount"
+        ]
+    },
+    "tool_notes": [
+        {
+            "title": "How this calculator works",
+            "text": "This calculator divides total concrete volume by the yield of each bag size to estimate the number of concrete bags needed."
+        },
+        {
+            "title": "When to use this calculator",
+            "text": "Use this calculator when purchasing premixed concrete bags for small projects instead of ordering ready-mix concrete."
+        }
+    ],
+    "indexing": {
+        "indexable": true
+    },
+    "monetization": {
+        "ads_enabled": false
+    },
+    "distribution": {
+        "parasites_enabled": true,
+        "platforms": []
+    }
+}

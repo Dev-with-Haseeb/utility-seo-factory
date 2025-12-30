@@ -1,0 +1,11 @@
+{
+  "name": "utility-seo-factory",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node engine/buildSite.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

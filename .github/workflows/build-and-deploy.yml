@@ -1,0 +1,51 @@
+name: Build and Deploy Static Site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify dist output
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ dist/ directory does not exist"
+            exit 1
+          fi
+
+          if [ -z "$(ls -A dist)" ]; then
+            echo "❌ dist/ directory is empty"
+            exit 1
+          fi
+
+          echo "✅ dist/ directory exists and is populated"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true

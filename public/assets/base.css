@@ -1,0 +1,166 @@
+/* public/assets/base.css */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #2563eb;
+  --radius: 10px;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+}
+
+/* ---------- Layout ---------- */
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+
+/* ---------- Tool header ---------- */
+.tool-header {
+  margin-bottom: 28px;
+}
+
+.tool-header h1 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.tool-header .tool-purpose {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+/* Accent divider */
+.tool-header::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 16px;
+  border-radius: 2px;
+}
+
+
+/* ---------- Tool container ---------- */
+.tool {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+/* ---------- Inputs ---------- */
+.inputs label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.inputs label > span {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.inputs input,
+.inputs select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.inputs input:focus,
+.inputs select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.inputs small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ---------- Outputs ---------- */
+.outputs {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.output {
+  margin-bottom: 18px;
+}
+
+.output strong {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.output span {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+/* ---------- Tool notes (SEO-safe text) ---------- */
+.tool-notes {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border);
+}
+
+.tool-notes h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.tool-notes p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+/* ---------- Index ---------- */
+ul {
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

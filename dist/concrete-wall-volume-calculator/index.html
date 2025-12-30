@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Concrete Wall Volume Calculator</title>
+    <meta name="description" content="Calculate the concrete volume needed for a rectangular concrete wall based on length, height, and thickness." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/base.css" />
+
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Wall Volume Calculator",
+  "applicationCategory": "ConstructionCalculator",
+  "operatingSystem": "All",
+  "description": "Calculates the concrete volume required for a rectangular concrete wall.",
+  "url": "https://example.com/concrete-wall-volume-calculator/",
+  "featureList": [
+    "Input: Wall Length (feet)",
+    "Input: Wall Height (feet)",
+    "Input: Wall Thickness (inches)",
+    "Output: Concrete Volume (cubic feet)",
+    "Output: Concrete Volume (cubic yards)"
+  ]
+}
+</script>
+
+  </head>
+
+  <body>
+    <main>
+      <header class="tool-header">
+        <h1>Concrete Wall Volume Calculator</h1>
+        <p class="tool-purpose">Calculate the concrete volume needed for a rectangular concrete wall based on length, height, and thickness.</p>
+      </header>
+
+      
+    <div class="tool">
+      <form class="inputs">
+        
+        <label>
+          <span>
+            Wall Length (feet)
+          </span>
+          <input
+            type="number"
+            id="wall_length"
+            value="20"
+            step="any"
+          />
+          <small>The total length of the wall.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Wall Height (feet)
+          </span>
+          <input
+            type="number"
+            id="wall_height"
+            value="8"
+            step="any"
+          />
+          <small>The vertical height of the wall.</small>
+        </label>
+
+      
+        <label>
+          <span>
+            Wall Thickness (inches)
+          </span>
+          <input
+            type="number"
+            id="wall_thickness"
+            value="8"
+            step="any"
+          />
+          <small>The thickness of the concrete wall.</small>
+        </label>
+
+      
+      </form>
+
+      <div class="outputs">
+        
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_feet">—</span>
+          <span>cubic feet</span>
+          <small>Total concrete volume required for the wall.</small>
+        </div>
+      
+        <div class="output">
+          <strong>Concrete Volume:</strong>
+          <span id="volume_cubic_yards">—</span>
+          <span>cubic yards</span>
+          <small>Total concrete volume required for the wall in cubic yards.</small>
+        </div>
+      
+      </div>
+
+      
+      <section class="tool-notes">
+        
+            <h2>How this calculator works</h2>
+            <p>This calculator multiplies wall length, height, and thickness to determine total concrete volume.</p>
+          
+            <h2>When to use this calculator</h2>
+            <p>Use this calculator when estimating concrete for foundation walls, retaining walls, or similar structures.</p>
+          
+      </section>
+    
+
+      
+        <script>
+        (function () {
+          function calculate() {
+            
+            const wall_length = document.getElementById("wall_length").value;
+            
+            const wall_height = document.getElementById("wall_height").value;
+            
+            const wall_thickness = document.getElementById("wall_thickness").value;
+            
+        
+            
+            const length_ft = wall_length;
+            
+            const height_ft = wall_height;
+            
+            const thickness_ft = wall_thickness / 12;
+            
+        
+            let result = length_ft * height_ft * thickness_ft;
+        
+            
+            const factor = Math.pow(10, 2);
+            result = Math.round(result * factor) / factor;
+            
+
+            
+            document.getElementById("volume_cubic_feet").textContent =
+              Number.isFinite(result) ? result : "—";
+            
+            document.getElementById("volume_cubic_yards").textContent =
+              Number.isFinite(result) ? (result / 27).toFixed(2) : "—";
+            
+          }
+
+          
+          document.getElementById("wall_length").addEventListener("input", calculate);
+          
+          document.getElementById("wall_height").addEventListener("input", calculate);
+          
+          document.getElementById("wall_thickness").addEventListener("input", calculate);
+          
+        
+          calculate();
+        })();
+        </script>
+        
+    </div>
+  
+    </main>
+  </body>
+</html>
