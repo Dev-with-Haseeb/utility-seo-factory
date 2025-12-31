@@ -10,10 +10,20 @@ const generateStructuredData = require("./generateStructuredData");
 const generatePage = require("./generatePage");
 const generateIndex = require("./generateIndex");
 
-const siteConfig = require("../config/site.config.json");
-
 const SCHEMA_DIR = path.join(__dirname, "../schemas");
 const DIST_DIR = path.join(__dirname, "../dist");
+const SITE_CONFIG_PATH = path.join(__dirname, "../config/site.config.json");
+
+function loadSiteConfig() {
+    if (!fs.existsSync(SITE_CONFIG_PATH)) {
+        throw new Error(
+            "site.config.json is missing. This site was not properly initialized."
+        );
+    }
+
+    const raw = fs.readFileSync(SITE_CONFIG_PATH, "utf8");
+    return JSON.parse(raw);
+}
 
 function cleanDist() {
     if (fs.existsSync(DIST_DIR)) {
@@ -48,13 +58,13 @@ function copyPublicAssets() {
     fs.cpSync(publicDir, DIST_DIR, { recursive: true });
 }
 
-
 function build() {
     console.log("Starting build...");
 
+    const siteConfig = loadSiteConfig();
+
     cleanDist();
     copyPublicAssets();
-
 
     const rawSchemas = loadSchemas();
     const normalizedTools = [];
